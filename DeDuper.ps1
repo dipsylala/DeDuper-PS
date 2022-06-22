@@ -4,7 +4,7 @@ $Filter = '*.dll;*.pdb'
 
 foreach ($File in Get-ChildItem -File $Source -Recurse) {
     $FileBaseName = $File.BaseName
-    $Hash = (Get-FileHash $File -Algorithm MD5).Hash
+    $Hash = (Get-FileHash $File -Algorithm MD5).Hash.ToLower()
 
     $FullDestinationDirectory = Join-Path $Destination $Hash.substring(0, 2) ($File.BaseName + ' - ' + $Hash)
 
